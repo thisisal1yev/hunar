@@ -8,10 +8,10 @@ export function FreshJobs({ jobs }: { jobs: Job[] }) {
       <Container>
         <div className="flex items-end justify-between gap-4">
           <h2 className="text-foreground text-3xl font-semibold tracking-tight sm:text-4xl">
-            Yangi vakansiyalar
+            Yangi startup oʻrinlari
           </h2>
           <ButtonLink href="/jobs" variant="secondary" className="hidden sm:inline-flex">
-            Barcha vakansiyalar
+            Barcha oʻrinlar
             <ArrowRight className="size-4" />
           </ButtonLink>
         </div>
@@ -25,7 +25,7 @@ export function FreshJobs({ jobs }: { jobs: Job[] }) {
         </div>
 
         <ButtonLink href="/jobs" variant="secondary" className="mt-8 w-full sm:hidden">
-          Barcha vakansiyalar
+          Barcha oʻrinlar
         </ButtonLink>
       </Container>
     </Section>

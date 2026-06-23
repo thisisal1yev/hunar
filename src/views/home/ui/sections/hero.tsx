@@ -6,16 +6,18 @@ import type { EcosystemStats } from "@/entities/market";
 function Stat({
   value,
   label,
-  format,
+  prefix,
+  suffix,
 }: {
   value: number;
   label: string;
-  format?: (n: number) => string;
+  prefix?: string;
+  suffix?: string;
 }) {
   return (
     <div>
       <div className="text-2xl font-semibold text-white sm:text-3xl">
-        <StatCounter value={value} format={format} />
+        <StatCounter value={value} prefix={prefix} suffix={suffix} />
       </div>
       <div className="mt-1 text-xs leading-snug text-white/55">{label}</div>
     </div>
@@ -54,7 +56,8 @@ export function Hero({ stats, spotlight }: { stats: EcosystemStats; spotlight: J
             <Stat
               value={Math.round(stats.totalFundingUSD / 1_000_000)}
               label="Jami jalb qilingan"
-              format={(n) => `$${Math.round(n)}M+`}
+              prefix="$"
+              suffix="M+"
             />
           </div>
 
