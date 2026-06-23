@@ -64,7 +64,10 @@ export function JobCard({ job, className }: JobCardProps) {
 
       <div className="flex flex-wrap gap-1.5">
         {job.skills.map((skill) => (
-          <span key={skill} className="border-line text-muted rounded-md border px-2 py-0.5 text-xs">
+          <span
+            key={skill}
+            className="border-line text-muted rounded-md border px-2 py-0.5 text-xs"
+          >
             {skill}
           </span>
         ))}
