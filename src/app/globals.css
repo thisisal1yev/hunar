@@ -15,6 +15,9 @@
   --accent: #0f766e;
   --accent-soft: #e7f4f1;
   --accent-soft-foreground: #0b5f57;
+  --band-from: #06201d;
+  --band-to: #0a0c0e;
+  --glow: #5eead4;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -47,6 +50,9 @@
   --color-accent: var(--accent);
   --color-accent-soft: var(--accent-soft);
   --color-accent-soft-foreground: var(--accent-soft-foreground);
+  --color-band-from: var(--band-from);
+  --color-band-to: var(--band-to);
+  --color-glow: var(--glow);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -60,4 +66,15 @@ body {
 ::selection {
   background: var(--accent-soft);
   color: var(--accent-soft-foreground);
+}
+
+@utility bg-band {
+  background:
+    radial-gradient(120% 120% at 15% 0%, rgba(94, 234, 212, 0.16), transparent 55%),
+    linear-gradient(160deg, var(--band-from), var(--band-to));
+}
+
+@utility bg-grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+  background-repeat: repeat;
 }
