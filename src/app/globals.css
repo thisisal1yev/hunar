@@ -1,80 +1,122 @@
 @import "tailwindcss";
 
-/* ── Design tokens (Trust-precise: light base, one deep-teal accent) ──
-   Semantic CSS variables flip per color scheme; utilities stay the same. */
+/* ── Daybreak tokens ── sunrise-coral on pre-dawn ink, sprout-green accent.
+   OKLCH everywhere. Warmth lives in the brand color, not the surface. */
 :root {
-  --background: #ffffff;
-  --foreground: #0b0d0f;
-  --muted: #5b616e;
-  --surface: #ffffff;
-  --surface-2: #f6f7f9;
-  --border: #e6e8ec;
-  --brand: #0f766e;
-  --brand-strong: #0b5f57;
-  --brand-foreground: #ffffff;
-  --accent: #0f766e;
-  --accent-soft: #e7f4f1;
-  --accent-soft-foreground: #0b5f57;
-  --band-from: #06201d;
-  --band-to: #0a0c0e;
-  --glow: #5eead4;
+  --bg: oklch(1 0 0);
+  --surface: oklch(0.975 0.006 55);
+  --surface-2: oklch(0.955 0.008 55);
+  --line: oklch(0.92 0.006 55);
+  --ink: oklch(0.22 0.02 50);
+  --muted: oklch(0.5 0.02 50);
+
+  --brand: oklch(0.72 0.16 48);
+  --brand-strong: oklch(0.56 0.17 36);
+  --brand-foreground: oklch(0.99 0 0);
+  --brand-soft: oklch(0.95 0.03 50);
+  --brand-soft-foreground: oklch(0.42 0.12 36);
+
+  --accent: oklch(0.62 0.13 150);
+  --accent-foreground: oklch(0.99 0 0);
+  --accent-soft: oklch(0.94 0.04 150);
+  --accent-soft-foreground: oklch(0.4 0.1 150);
+
+  --band-ink: oklch(0.17 0.025 50);
+  --band-ink-2: oklch(0.13 0.02 40);
+  --band-glow: oklch(0.72 0.16 48);
+  --on-band: oklch(0.97 0.01 60);
+  --on-band-muted: oklch(0.8 0.02 60);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0c0e;
-    --foreground: #eaecee;
-    --muted: #9aa1ac;
-    --surface: #111417;
-    --surface-2: #0e1113;
-    --border: #23272c;
-    --brand: #0f766e;
-    --brand-strong: #0b5f57;
-    --brand-foreground: #ffffff;
-    --accent: #5eead4;
-    --accent-soft: rgba(45, 212, 191, 0.12);
-    --accent-soft-foreground: #99f6e4;
+    --bg: oklch(0.16 0.02 45);
+    --surface: oklch(0.2 0.022 45);
+    --surface-2: oklch(0.18 0.02 45);
+    --line: oklch(0.3 0.02 45);
+    --ink: oklch(0.95 0.01 60);
+    --muted: oklch(0.74 0.02 55);
+
+    --brand: oklch(0.76 0.16 50);
+    --brand-strong: oklch(0.7 0.16 46);
+    --brand-soft: oklch(0.32 0.07 40);
+    --brand-soft-foreground: oklch(0.9 0.06 50);
+
+    --accent: oklch(0.72 0.14 150);
+    --accent-soft: oklch(0.3 0.06 150);
+    --accent-soft-foreground: oklch(0.88 0.08 150);
+
+    --band-ink: oklch(0.12 0.02 45);
+    --band-ink-2: oklch(0.1 0.015 40);
+    --on-band: oklch(0.97 0.01 60);
+    --on-band-muted: oklch(0.8 0.02 60);
   }
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-muted: var(--muted);
+  --color-bg: var(--bg);
   --color-surface: var(--surface);
   --color-surface-2: var(--surface-2);
-  --color-border: var(--border);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
   --color-brand: var(--brand);
   --color-brand-strong: var(--brand-strong);
   --color-brand-foreground: var(--brand-foreground);
+  --color-brand-soft: var(--brand-soft);
+  --color-brand-soft-foreground: var(--brand-soft-foreground);
   --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
   --color-accent-soft: var(--accent-soft);
   --color-accent-soft-foreground: var(--accent-soft-foreground);
-  --color-band-from: var(--band-from);
-  --color-band-to: var(--band-to);
-  --color-glow: var(--glow);
+  --color-band-ink: var(--band-ink);
+  --color-on-band: var(--on-band);
+  --color-on-band-muted: var(--on-band-muted);
+  --font-display: var(--font-bricolage);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
-  background: var(--accent-soft);
-  color: var(--accent-soft-foreground);
+  background: var(--brand-soft);
+  color: var(--brand-soft-foreground);
 }
 
+/* Pre-dawn hero band: ink ground + a coral sun rising from lower-left. */
 @utility bg-band {
   background:
-    radial-gradient(120% 120% at 15% 0%, rgba(94, 234, 212, 0.16), transparent 55%),
-    linear-gradient(160deg, var(--band-from), var(--band-to));
+    radial-gradient(
+      90% 80% at 12% 8%,
+      color-mix(in oklch, var(--band-glow) 20%, transparent),
+      transparent 60%
+    ),
+    linear-gradient(165deg, var(--band-ink), var(--band-ink-2));
+}
+
+/* Stronger sunrise gradient for the hero, layered under the canvas. */
+@utility bg-daybreak {
+  background:
+    radial-gradient(
+      70% 60% at 18% 100%,
+      color-mix(in oklch, var(--band-glow) 34%, transparent),
+      transparent 64%
+    ),
+    radial-gradient(
+      60% 50% at 85% 0%,
+      color-mix(in oklch, var(--accent) 12%, transparent),
+      transparent 60%
+    ),
+    linear-gradient(170deg, var(--band-ink), var(--band-ink-2));
 }
 
 @utility bg-grain {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
   background-repeat: repeat;
 }
