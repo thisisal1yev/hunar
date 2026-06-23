@@ -7,3 +7,4 @@ export { StatCounter } from "./stat-counter";
 export { Badge } from "./badge";
 export { Avatar } from "./avatar";
 export { CompBar } from "./comp-bar";
+export { DaybreakCanvas } from "./daybreak-canvas";
