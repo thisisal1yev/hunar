@@ -8,7 +8,7 @@ type Audience = "candidate" | "employer";
 
 const tabs: { key: Audience; label: string }[] = [
   { key: "candidate", label: "Nomzodlar uchun" },
-  { key: "employer", label: "Ish beruvchilar uchun" },
+  { key: "employer", label: "Startuplar uchun" },
 ];
 
 const steps: Record<Audience, { title: string; body: string }[]> = {
@@ -18,20 +18,20 @@ const steps: Record<Audience, { title: string; body: string }[]> = {
       body: "Google yoki GitHub orqali kiring, profilni toʻldiring va CV yuklang.",
     },
     {
-      title: "Vakansiyalarni qidiring",
-      body: "Koʻnikma, format, shahar va maosh boʻyicha filtrlang.",
+      title: "Startup oʻrinlarini qidiring",
+      body: "Bosqich, equity, format va maosh boʻyicha startup oʻrinlarini qidiring.",
     },
     {
       title: "Ariza topshiring",
-      body: "Ish beruvchi arizani maʼqullasa, ikkala tomon kontaktni koʻradi.",
+      body: "Asoschi arizani maʼqullasa, ikkala tomon kontaktni koʻradi.",
     },
   ],
   employer: [
     {
-      title: "Kompaniya profili",
-      body: "Kompaniyani roʻyxatdan oʻtkazing va tasdiq belgisini oling.",
+      title: "Startup profili",
+      body: "Startupingizni roʻyxatdan oʻtkazing va tasdiq belgisini oling.",
     },
-    { title: "Vakansiya joylang", body: "Eʼlon moderatsiyadan oʻtgach chop etiladi." },
+    { title: "Oʻrin joylang", body: "Oʻrin moderatsiyadan oʻtgach chop etiladi." },
     {
       title: "Arizalarni koʻring",
       body: "Statuslarni boshqaring, mos nomzod bilan toʻgʻridan-toʻgʻri bogʻlaning.",

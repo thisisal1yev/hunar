@@ -6,8 +6,8 @@ const columns = [
   {
     title: "Platforma",
     links: [
-      { label: "Vakansiyalar", href: "/jobs" },
-      { label: "Ish beruvchilarga", href: "/for-employers" },
+      { label: "Oʻrinlar", href: "/jobs" },
+      { label: "Startuplar uchun", href: "/for-employers" },
       { label: "Kirish", href: "/login" },
     ],
   },
@@ -32,7 +32,7 @@ export function SiteFooter() {
             {siteConfig.name}
           </div>
           <p className="text-muted mt-2 text-sm leading-relaxed">
-            Oʻzbekiston IT bozori uchun kuratsiyalangan ish platformasi.
+            Oʻzbekiston startup ekotizimi uchun isteʼdod platformasi.
           </p>
         </div>
 

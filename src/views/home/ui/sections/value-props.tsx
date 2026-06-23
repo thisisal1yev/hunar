@@ -10,23 +10,23 @@ import { Container, Reveal, Section } from "@/shared/ui";
 const items: { icon: Icon; title: string; body: string }[] = [
   {
     icon: ShieldCheck,
-    title: "Har bir vakansiya tekshirilgan",
-    body: "Moderator har bir eʼlonni koʻrib chiqadi. Spam va shablon arizalar yoʻq.",
+    title: "Tasdiqlangan startuplar",
+    body: "Har bir startup va eʼlon moderatsiyadan oʻtadi. Spam va shablon arizalar yoʻq.",
   },
   {
     icon: CurrencyDollar,
-    title: "Maosh soʻm va dollarda",
-    body: "Vilkani darhol koʻrasiz. Yashirin shartlar va “kelishilgan holda” yoʻq.",
+    title: "Maosh va equity ochiq",
+    body: "Vilka va equity ulushini darhol koʻrasiz. Yashirin shartlar yoʻq.",
   },
   {
     icon: SealCheck,
-    title: "Tasdiqlangan profillar",
-    body: "Koʻnikmalar qoʻlda tekshiriladi va profilga tasdiq belgisi beriladi.",
+    title: "Toʻgʻridan-toʻgʻri asoschilar",
+    body: "Vositachisiz — ariza maʼqullansa, asoschi bilan bevosita bogʻlanasiz.",
   },
   {
     icon: GlobeHemisphereWest,
-    title: "IT va masofaviy ishga moslangan",
-    body: "GitHub orqali kirish, ingliz tilidagi CV birinchi sinf sifatida qabul qilinadi.",
+    title: "Global darajaga tayyor",
+    body: "GitHub orqali kirish, ingliz tilidagi CV — xalqaro startuplarga ham mos.",
   },
 ];
 
@@ -36,7 +36,7 @@ export function ValueProps() {
       <Container>
         <Reveal>
           <h2 className="text-foreground text-3xl font-semibold tracking-tight sm:text-4xl">
-            Nega IT Hunar
+            Nega Hatch
           </h2>
         </Reveal>
 

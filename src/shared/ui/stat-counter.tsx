@@ -24,7 +24,13 @@ interface StatCounterProps {
  * Uses a motion value (not React state) so it never re-renders the tree mid-animation
  * and stays serializable across the server/client boundary (`prefix`/`suffix` are strings).
  */
-export function StatCounter({ value, prefix = "", suffix = "", durationMs = 1200, className }: StatCounterProps) {
+export function StatCounter({
+  value,
+  prefix = "",
+  suffix = "",
+  durationMs = 1200,
+  className,
+}: StatCounterProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.4 });
   const reduce = useReducedMotion();

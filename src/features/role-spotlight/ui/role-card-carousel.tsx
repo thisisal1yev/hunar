@@ -3,13 +3,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { CaretLeft, CaretRight, SealCheck, MapPin } from "@phosphor-icons/react";
-import {
-  formatSalary,
-  formatEquity,
-  stageLabel,
-  workFormatLabel,
-  type Job,
-} from "@/entities/job";
+import { formatSalary, formatEquity, stageLabel, workFormatLabel, type Job } from "@/entities/job";
 import { cn } from "@/shared/lib";
 
 /** Auto-cycling spotlight of startup roles, each showing cash + equity + stage. */

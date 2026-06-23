@@ -8,22 +8,22 @@ import { cn } from "@/shared/lib";
 const items: { q: string; a: string }[] = [
   {
     q: "Nomzodlar uchun bepulmi?",
-    a: "Ha, toʻliq bepul. Toʻlovni faqat ish beruvchilar amalga oshiradi.",
+    a: "Ha, toʻliq bepul. Toʻlovni faqat startuplar amalga oshiradi.",
   },
   {
-    q: "Maʼlumotlarim va CV qanday himoyalangan?",
-    a: "CV yopiq saqlanadi. Uni faqat siz va arizangizni maʼqullagan ish beruvchi koʻra oladi.",
+    q: "Equity nima va u qanday koʻrsatiladi?",
+    a: "Equity — startupdagi ulush. Har bir oʻrinda taklif etilgan ulush foizi ochiq koʻrsatiladi.",
   },
   {
-    q: "Boshqa saytlardan farqingiz nima?",
-    a: "Har bir vakansiya moderatsiyadan oʻtadi, maosh esa soʻm va dollarda shaffof koʻrsatiladi.",
+    q: "Startuplar qanday tekshiriladi?",
+    a: "Har bir startup va eʼlon moderatsiyadan oʻtadi; tasdiqlangan startup belgisi beriladi.",
   },
   {
-    q: "Ish beruvchi bilan qanday bogʻlanaman?",
-    a: "Ish beruvchi arizani maʼqullagach, ikkala tomon bir-birining kontaktini (Telegram yoki telefon) koʻradi.",
+    q: "Asoschi bilan qanday bogʻlanaman?",
+    a: "Ariza maʼqullangach, ikkala tomon bir-birining kontaktini (Telegram yoki telefon) koʻradi.",
   },
   {
-    q: "Vakansiya joylash qancha vaqt oladi?",
+    q: "Oʻrin joylash qancha vaqt oladi?",
     a: "Eʼlon moderatsiyadan oʻtgach chop etiladi, odatda bir necha soat ichida.",
   },
 ];
