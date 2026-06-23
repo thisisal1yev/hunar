@@ -3,10 +3,11 @@ import { SiteFooter } from "@/widgets/site-footer";
 import { getFreshJobs } from "@/entities/job";
 import { getMarketStats } from "@/entities/market";
 import { Hero } from "./sections/hero";
-import { CompTransparency } from "./sections/comp-transparency";
-import { ValueProps } from "./sections/value-props";
+import { OpenComp } from "./sections/open-comp";
+import { WhyHatch } from "./sections/why-hatch";
 import { HowItWorks } from "./sections/how-it-works";
-import { FreshJobs } from "./sections/fresh-jobs";
+import { FreshRoles } from "./sections/fresh-roles";
+import { SocialProof } from "./sections/social-proof";
 import { EmployerCta } from "./sections/employer-cta";
 import { Faq } from "./sections/faq";
 import { FinalCta } from "./sections/final-cta";
@@ -19,10 +20,11 @@ export async function HomeView() {
       <SiteHeader />
       <main>
         <Hero stats={market.stats} spotlight={jobs.slice(0, 4)} />
-        <CompTransparency data={market} />
-        <ValueProps />
+        <OpenComp data={market} />
+        <WhyHatch />
         <HowItWorks />
-        <FreshJobs jobs={jobs} />
+        <FreshRoles jobs={jobs} />
+        <SocialProof />
         <EmployerCta />
         <Faq />
         <FinalCta />
