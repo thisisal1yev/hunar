@@ -6,16 +6,16 @@ describe("market demo data invariants", () => {
 
   it("cash midpoint rises with stage", () => {
     const mids = MARKET_DEMO.byStage.map((s) => mid(s.cashMinUZS, s.cashMaxUZS));
-    for (let i = 1; i < mids.length; i++) {
-      expect(mids[i]).toBeGreaterThan(mids[i - 1]);
-    }
+    mids.forEach((m, i) => {
+      if (i > 0) expect(m).toBeGreaterThan(mids[i - 1]!);
+    });
   });
 
   it("equity max shrinks with stage", () => {
     const eq = MARKET_DEMO.byStage.map((s) => s.equityMax);
-    for (let i = 1; i < eq.length; i++) {
-      expect(eq[i]).toBeLessThan(eq[i - 1]);
-    }
+    eq.forEach((e, i) => {
+      if (i > 0) expect(e).toBeLessThan(eq[i - 1]!);
+    });
   });
 
   it("USD is derived from USD_RATE", () => {

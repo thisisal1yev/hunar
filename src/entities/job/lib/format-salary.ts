@@ -14,3 +14,9 @@ export function formatSalary(job: Job): { primary: string; secondary?: string } 
     : undefined;
   return { primary, secondary };
 }
+
+/** Format a job's equity range as a percent string, e.g. "0.5-2%". */
+export function formatEquity(job: Job): string | undefined {
+  if (!job.equity) return undefined;
+  return `${job.equity.min}-${job.equity.max}%`;
+}

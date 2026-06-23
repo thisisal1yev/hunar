@@ -1,11 +1,14 @@
 export type Grade = "junior" | "middle" | "senior" | "lead";
 export type WorkFormat = "remote" | "onsite" | "hybrid";
 export type Currency = "UZS" | "USD";
+export type Stage = "pre-seed" | "seed" | "series-a" | "series-b+";
 
 export interface Company {
   name: string;
   /** Admin-set verification badge. */
   verified: boolean;
+  /** Funding stage, when the company is a startup. */
+  stage?: Stage;
 }
 
 export interface Salary {
@@ -27,5 +30,7 @@ export interface Job {
   salary: Salary;
   /** Secondary USD estimate shown alongside a UZS range. */
   salaryUsd?: { min: number; max: number };
+  /** Equity offered, percent range. */
+  equity?: { min: number; max: number };
   postedDaysAgo: number;
 }

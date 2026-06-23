@@ -2,8 +2,8 @@ import Link from "next/link";
 import { SealCheck, MapPin } from "@phosphor-icons/react/dist/ssr";
 import { cn } from "@/shared/lib";
 import type { Job } from "../model/types";
-import { formatSalary } from "../lib/format-salary";
-import { gradeLabel, workFormatLabel } from "../lib/labels";
+import { formatSalary, formatEquity } from "../lib/format-salary";
+import { gradeLabel, workFormatLabel, stageLabel } from "../lib/labels";
 
 interface JobCardProps {
   job: Job;
@@ -12,6 +12,8 @@ interface JobCardProps {
 
 export function JobCard({ job, className }: JobCardProps) {
   const salary = formatSalary(job);
+  const equity = formatEquity(job);
+  const stage = job.company.stage ? stageLabel[job.company.stage] : undefined;
   const monogram = job.company.name.charAt(0).toUpperCase();
 
   return (
@@ -37,6 +39,11 @@ export function JobCard({ job, className }: JobCardProps) {
                 className="text-accent size-4 shrink-0"
                 aria-label="Tasdiqlangan"
               />
+            )}
+            {stage && (
+              <span className="border-border text-muted ml-1 rounded-full border px-1.5 py-0.5 text-[11px] leading-none font-medium">
+                {stage}
+              </span>
             )}
           </div>
           <span className="text-muted text-xs">{gradeLabel[job.grade]}</span>
@@ -69,6 +76,11 @@ export function JobCard({ job, className }: JobCardProps) {
       <div className="border-border mt-auto border-t pt-4">
         <div className="text-foreground font-semibold">{salary.primary}</div>
         {salary.secondary && <div className="text-muted text-xs">{salary.secondary}</div>}
+        {equity && (
+          <span className="text-accent-soft-foreground bg-accent-soft mt-2 inline-block w-fit rounded-full px-2 py-0.5 text-xs font-medium">
+            {equity} equity
+          </span>
+        )}
       </div>
     </Link>
   );
