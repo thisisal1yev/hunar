@@ -1,7 +1,8 @@
 export { Button, ButtonLink, buttonClasses } from "./button";
 export { Container } from "./container";
 export { Section } from "./section";
+export { SampleNote } from "./sample-note";
 export { Reveal } from "./reveal";
 export { StatCounter } from "./stat-counter";
-export { SampleNote } from "./sample-note";
-export { CompBar } from "./comp-bar";
+export { Badge } from "./badge";
+export { Avatar } from "./avatar";
