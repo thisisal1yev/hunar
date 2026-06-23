@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project status
 
-This is a **specification-only repository**. There is no application code yet — no `package.json`, no scaffold, no git. The repo currently holds five Russian-language planning documents that define an MVP to be built. Your first implementation task will be scaffolding the Next.js app from scratch per the specs below.
+The app is **scaffolded (skeleton stage)**: Next.js 16 App Router + React 19 + TypeScript, Tailwind v4, ESLint + Prettier, and Supabase client wiring — all under a Feature-Sliced Design `src/` layout. No product features yet (no auth, DB schema/RLS, or candidate/employer/admin flows). The five Russian-language spec docs below remain the source of truth for what to build next. Package manager is **bun**.
 
 **Hunar** (working codename, placeholder to be find-replaced later) is a curated, niche IT hiring marketplace for Uzbekistan. Its wedge against incumbents (hh.uz) is **quality over volume**: every job is moderated, profiles can be verified, and salaries are shown transparently in **both UZS and USD**. In the MVP the platform looks fully automated but matching is actually done by humans through an admin panel (concierge mode) to bypass the two-sided cold-start problem.
 
@@ -49,18 +49,22 @@ These come from `PROMPT.md` §"Жёсткие правила" and `TZ.md`. Viola
 
 **Route groups** (see `TZ.md` §5 for the full map): `(public)` landing + `/jobs` + `/jobs/[slug]` + `/companies/[slug]` (SSR, SEO-critical) · `(auth)` `/login` + `/onboarding` (role choice + PD consent) · `candidate/*` · `employer/*` · `admin` · `api/` route handlers.
 
-**Planned project structure** (from `TECH-STACK.md` §8 / `PROMPT.md`):
+**Frontend uses Feature-Sliced Design (FSD)** adapted for the App Router (NOT the flat `app/`+`components/`+`lib/` layout sketched in `TECH-STACK.md` §8). Everything lives under `src/`:
 ```
-app/         # routes, organized by the groups above
-components/   # reusable UI (PascalCase)
-lib/
-  supabase/  # server + browser clients (separate)
-  db/        # DB queries
-  validation/# zod schemas
-types/        # shared types
+src/
+  app/        # Next.js routing ONLY — layouts, pages, route handlers, providers, globals.css.
+              #   Route files stay thin and render a composition from views/.
+  views/      # FSD "pages" layer (renamed; Next reserves pages/). Full page compositions.
+  widgets/    # self-contained blocks composed of features/entities
+  features/   # user actions with business value (apply-to-job, job-search)
+  entities/   # business domain models + their UI (job, candidate, company)
+  shared/     # no business logic: ui/, lib/ (e.g. cn), config/ (siteConfig, env), supabase/
 ```
 
-**Two Supabase clients:** a server client (`createServerClient`) and a browser client (`createBrowserClient`). The `service_role` key is **server-only** — never in the browser bundle. Admin full-access goes through server code with `service_role`, never the client.
+**FSD import rule** — a module may only import from layers strictly *below* it:
+`app → views → widgets → features → entities → shared`. `shared` imports nothing upward; slices in the same layer don't import each other (compose one layer up). Each slice exposes a public API via `index.ts` — import a slice by its root (`@/features/job-search`), never reach into internals. Alias `@/*` → `src/*`.
+
+**Two Supabase clients** in `src/shared/supabase/`: `createSupabaseServerClient()` (`server.ts`, async, cookie-based, `import "server-only"`) and `createSupabaseBrowserClient()` (`client.ts`). Both use the public anon key; RLS governs access. The `service_role` key is **server-only** (via `shared/config/env.server.ts`, guarded by `server-only`) — never in the browser bundle or any `shared/config` barrel that client code imports.
 
 **Data model** (PostgreSQL, snake_case, all user tables RLS-on — full columns in `TZ.md` §6):
 `profiles` · `candidate_profiles` · `companies` · `jobs` · `applications` · `moderation_logs`.
@@ -98,4 +102,17 @@ Build phases (`TZ.md` §14): (1) skeleton + DB schema + RLS + auth/onboarding �
 
 ## Commands
 
-No toolchain exists yet — there is no `package.json`. Once the Next.js app is scaffolded, the standard commands will apply (`npm run dev` / `build` / `lint`) plus the Supabase CLI for migrations. **Update this section with the real, verified commands as soon as the project is scaffolded.**
+Package manager is **bun**.
+
+| Command | Purpose |
+|---|---|
+| `bun install` | Install dependencies |
+| `bun run dev` | Dev server (Turbopack) at `http://localhost:3000` |
+| `bun run build` | Production build |
+| `bun run start` | Serve the production build |
+| `bun run lint` | ESLint |
+| `bun run lint:fix` | ESLint with `--fix` |
+| `bun run typecheck` | `tsc --noEmit` |
+| `bun run format` / `format:check` | Prettier write / check |
+
+Copy `.env.example` → `.env` and fill Supabase values before running anything that touches Supabase. Supabase CLI migrations (not yet initialized) will be added with the DB-schema phase.
